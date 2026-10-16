@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring 26-B JS</title>
+</head>
+<body>
+    <label for="">Heart Rate: </label>
+    <input type="text" id="input1"><br><br>
+
+    <label for="">Oxygen Saturation: </label>
+    <input type="text" id="input2"><br><br>
+
+    <button onclick="pass()">Save Reading</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+
+
+    <script>
+        let bp = [], o2 = []
+        let totalHeartRate = 0, totalOxy = 0, cnt = 0
+
+
+        function pass() {
+            cnt++
+
+            let input1 = Number(document.getElementById('input1').value)
+            let input2 = Number(document.getElementById('input2').value)
+
+            totalHeartRate += input1
+            totalOxy += input2
+
+            let avgHeartRate = totalHeartRate/cnt
+            let avgOxy = totalOxy/cnt
+
+            let riskScore = (100 - input2) * 2 + Math.abs(input1 - 80) * 0.5
+
+            let feedback = ""
+            if(riskScore <= 10) feedback = "SAFE"
+            else if(riskScore > 10 && riskScore <= 20) feedback = "WARNING"
+            else if(riskScore > 20) feedback = "DANGER"
+
+            document.getElementById('output1').innerText = `Average Hear Rate: ${avgHeartRate.toFixed(2)} \nAverage Oxygen Saturation: ${avgOxy.toFixed(2)} \nRish Score: ${riskScore}`
+            document.getElementById('output2').innerText = `Feedback: ${feedback}`
+
+            document.getElementById('input1').value = ""
+            document.getElementById('input2').value = ""
+        }
+    </script>
+</body>
+</html>
