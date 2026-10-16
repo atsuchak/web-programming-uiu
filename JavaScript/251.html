@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>251 Javascript</title>
+</head>
+<body>
+    <input type="password" id="input1">
+    <button onclick="pass()" id="button1">Check Strength</button>
+    
+    <p id="output1"></p>
+    <p id="output2"></p>
+    <p id="output3"></p>
+    <p id="output4"></p>
+
+
+    <script>
+        let targetStrength = 100
+        let atemptCnt = 0
+        let strngReach = false
+        
+        
+        function pass() {
+            atemptCnt++
+            let pointCnt = 0
+            let smallChk = false, capitalChk = false, numChk = false, specialChk = false
+            
+            let input1 = String(document.getElementById('input1').value)
+
+            if(input1.length > 6) pointCnt += (10 * Math.floor((input1.length-6)/2))
+            // console.log(input1.length);
+            console.log(pointCnt);
+            
+            for(let i = 0; i < input1.length; i++) {
+                if(input1[i] >= 'A' && input1[i] <= 'Z' && !capitalChk) pointCnt += 15, capitalChk = true
+                else if(input1[i] >= 'a' && input1[i] <= 'z' && !smallChk) pointCnt += 15, smallChk = true
+                else if(input1[i] >= '0' && input1[i] <= '9' && !numChk) pointCnt += 20, numChk = true
+                else if(!(input1[i] >= 'A' && input1[i] <= 'Z') && !(input1[i] >= 'a' && input1[i] <= 'z') && !(input1[i] >= '0' && input1[i] <= '9') && !specialChk) pointCnt += 25, specialChk = true
+                console.log(pointCnt);
+            }
+            console.log(pointCnt);
+
+            if(pointCnt >= 0 && pointCnt <= 30) 
+                document.getElementById('output1').innerText = `Very Weak`
+            else if(pointCnt > 30 && pointCnt <= 50) 
+                document.getElementById('output1').innerText = `Weak`
+            else if(pointCnt > 50 && pointCnt <= 70) 
+                document.getElementById('output1').innerText = `Medium`
+            else if(pointCnt > 70 && pointCnt <= 90) 
+                document.getElementById('output1').innerText = `Strong`, strngReach = true
+            else if(pointCnt > 90)
+                document.getElementById('output1').innerText = `Very Strong`
+            
+            if(pointCnt > 100)
+                document.getElementById('output1').innerText = `Perfect Password!`
+
+            document.getElementById('output2').innerText = `Total attempts: ${atemptCnt}`
+
+            // document.getElementById('output4').innerText = `Total points: ${pointCnt}`
+            
+            if(atemptCnt > 8 && pointCnt <= 70 && !strngReach)
+                document.getElementById('output3').innerText = `Need Practice! Use special charecter for strong password`
+
+            document.getElementById('input1').value = ""
+
+        }
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+    Temp input output:
+        abc                 Very Weak
+        hello123            Weak
+        Strong@Pass         Strong
+        Perfect@Pass123     Perfect Password!
+-->

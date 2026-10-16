@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>252 Javascript</title>
+</head>
+<body>
+    Enter Calories: <input type="number" id="input1">
+    <button onclick="pass()" id="button1">Add Calories</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+    <p id="output3"></p>
+
+
+    <script>
+        let totalCal = 2000
+        let sum = 0, cnt = 0;
+
+        function pass() {
+            let input1 = Number(document.getElementById('input1').value)
+
+            sum += input1
+            cnt++
+
+            document.getElementById('output1').innerText = `Total calories: ${sum}`
+
+            document.getElementById('output2').innerText = `Daily goal progress: ${(sum/totalCal) * 100}%`
+                   
+            if(sum >= 0 && sum <= 800)
+                document.getElementById('output3').innerText = `You're off to a healthy start!`
+            else if(sum > 800 && sum <= 1600)
+                document.getElementById('output3').innerText = `Good progress, keep it balanced!`
+            else if(sum > 1600 && sum <= 1999)
+                document.getElementById('output3').innerText = `Almost at your limit!`
+            else if(sum >= 2000)
+                document.getElementById('output3').innerText = `Goal reached! Stay mindful!`
+
+            if(sum < 2000 && cnt > 10)
+                document.getElementById('output3').innerText = `Be cautious of frequent snacking!` 
+
+            document.getElementById('input1').value = "";
+            
+        } 
+    </script>
+</body>
+</html>

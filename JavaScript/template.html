@@ -1,0 +1,39 @@
+<!-- 
+    Steps: 
+        1. File create
+        2. Js file link
+        3. take input with id
+        4. button with pass() func and id
+        5. p tag with id
+
+        6. write func
+        7. store value from html (getelementbyID('').value)
+        8. value show in p tag (getelementbyID('').innerText)
+-->
+
+
+<!DOCTYPE html>
+<head>
+    <title>Javascript template</title>
+</head>
+<body>
+    <input type="text" id="input1">
+    <button onclick="pass()" id="button1">Submit</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+
+
+    <script>
+        function pass() {
+            let input1 = document.getElementById('input1').value
+
+            // if input is a number
+            let inputNum = Number(document.getElementById('inputNum'))
+
+            document.getElementById('output1').innerText = input1;
+            document.getElementById('output2').innerText = "Hello JS";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>253 Javascript</title>
+</head>
+<body>
+    CT 1: <input type="text" id="input1"><br><br>
+    CT 2: <input type="text" id="input2"><br><br>
+    CT 3: <input type="text" id="input3"><br><br>
+    
+    Midterm Marks: <input type="text" id="input4"><br><br>
+    Final Marks: <input type="text" id="input5"><br><br>
+
+    <button onclick="pass()" id="button1">Calculate Total</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+    <p id="output3"></p>
+    <p id="output4"></p>
+    <p id="output5"></p>
+
+
+    <script>
+        function pass() {
+            let input1 = Number(document.getElementById('input1').value)
+            let input2 = Number(document.getElementById('input2').value)
+            let input3 = Number(document.getElementById('input3').value)
+            let input4 = Number(document.getElementById('input4').value)
+            let input5 = Number(document.getElementById('input5').value)
+
+            let ct1 = Math.max(input1, Math.max(input2, input3)), ct2
+            
+            if(ct1 == input1) ct2 = Math.max(input2, input3)
+            else if(ct1 == input2) ct2 = Math.max(input1, input3)
+            else ct2 = Math.max(input1, input2)
+
+            document.getElementById('output1').innerText = `Best two CT's total: ${ct1+ct2}`
+            document.getElementById('output2').innerText = `Midterm marks: ${input4}`
+            document.getElementById('output3').innerText = `Final marks: ${input5}`
+            document.getElementById('output4').innerText = `Total marks: ${(ct1+ct2)/2 + input4 + input5}`
+            document.getElementById('output5').innerText = ((ct1+ct2)/2 + input4 + input5 > 54)? `Status: Passed` : `Status: Failed`
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>243 Javascript</title>
+</head>
+<body>
+    <h1>User Guesses</h1>
+    <input type="text" id="input1">
+
+    <button onclick="pass()">Submit</button>
+
+    <p id="output1"></p>
+    <p id="output2"></p>
+
+
+    <script>
+        let num = Math.floor(Math.random() * (5000-500+1)) + 500
+        console.log(num);
+        let cnt = 0
+        let feedback = []
+
+        function pass() {
+            let input1 = Number(document.getElementById('input1').value)
+
+            if(input1 > num && cnt < 5) feedback[cnt] = `Too high!`
+            else if(input1 < num && cnt < 5) feedback[cnt] = `Too low!`
+            else if(input1 == num && cnt < 5) feedback[cnt] = `Correct!`, document.getElementById('input1').disabled = true
+            cnt++
+
+            document.getElementById('output1').innerText = `${feedback}`
+            
+            if(cnt >= 5) document.getElementById('output2').innerText = `Out of guesses!`, document.getElementById('input1').disabled = true
+            if(input1 == num) document.getElementById('output2').innerText = `Correct!`
+
+            document.getElementById('input1').value = ""
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>261 Javascript</title>
+</head>
+<body>
+    Subject Name: <input type="text" id="input1"><br><br>
+    Study Hours: <input type="text" id="input2"><br><br>
+
+    <button onclick="pass()">Add Study</button>
+
+    <p id="output1"></p>
+
+    
+    <script>
+        let goal = 20
+        let cnt = 0, total = 0
+        let sub = []
+
+        function pass() {
+            sub[cnt] = document.getElementById('input1').value
+            cnt++
+
+            let input2 = Number(document.getElementById('input2').value)
+            total += input2
+            let avg = total/cnt
+
+            let feedback = ""
+            if(total >= 0 && total <= 5) feedback = `Start studing regularly!`
+            else if(total >= 6 && total <= 12) feedback = `Good progress!`
+            else if(total >= 13 && total <= 19) feedback = `Almost ready!`
+            else if(total >= 20) feedback = `Weekly goad reached!`
+
+            if(cnt > 7 && total < 20) feedback = `Increase your study time!`
+
+            document.getElementById('output1').innerText = `Total: ${total} hours, Average: ${avg} hours, Subjects: [${sub}], ${feedback}`
+
+            document.getElementById('input1').value = ""
+            document.getElementById('input2').value = ""
+
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+<!-- 
+    Temp input output:
+        English-2, English-3, Bangla-4,Physics-5
+        Total: 14 hours, Average: 3.5 hours, Subjects: [English, English, Bangla, Physics], Almost ready!
+
+        Math-5, Physics-6, Chemistry-7, English-3
+        Total: 21 hours, Average: 5.25 hours, Subjects: [Math, Physics, Chemistry, English], Weekly goal reached!
+
+        8 sessions, total 15 hours 
+        Total: 15 hours, Average: 1.875 hours, Increase your study
+time!
+-->
